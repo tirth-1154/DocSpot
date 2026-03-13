@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect
 from django.db.models import Avg, Count
+<<<<<<< HEAD
 from . models import *
+=======
+from .models import *
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 def home(request):
     user_id = request.session.get('user_id')
     is_following_anyone = False
@@ -396,6 +400,38 @@ def doctorAppointments(request):
     }        
     return render(request,'doctor_myAppointments.html',data)
 
+<<<<<<< HEAD
+=======
+def doctorMessages(request):
+    if 'doctorID' not in request.session:
+        return redirect('Login')
+    
+    doctor_id=request.session['doctorID']
+    data={
+        "doctor":tblDoctor.objects.filter(doctorID=doctor_id).first(),
+    }        
+    return render(request,'doctor_messages.html',data)
+
+def doctorReviews(request):
+    if 'doctorID' not in request.session:
+        return redirect('Login')
+    
+    doctor_id = request.session['doctorID']
+    doctor = tblDoctor.objects.filter(doctorID=doctor_id).first()
+    reviews = tblReview.objects.filter(doctorID=doctor).order_by('-createdDT')
+    
+    avg_rating_dict = reviews.aggregate(Avg('rating'))
+    avg_rating = avg_rating_dict['rating__avg'] or 0.0
+    
+    data = {
+        "doctor": doctor,
+        "reviews": reviews,
+        "review_count": reviews.count(),
+        "avg_rating": round(avg_rating, 1)
+    }
+    return render(request, 'doctor_reviews.html', data)
+
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 def acceptAppointment(request, id):
     if 'doctorID' not in request.session:
         return redirect('Login')
@@ -424,6 +460,7 @@ def patientDashboard(request):
     return render(request,'patient_dashboard.html')
 
 def patientDoctorsList(request):   
+<<<<<<< HEAD
     search_query = request.GET.get('search_query', '').strip()
     
     doctors = tblDoctor.objects.all()
@@ -445,10 +482,14 @@ def patientDoctorsList(request):
         "search_query": search_query,
     }
     return render(request, 'patient_search_doctors.html', data)
+=======
+    return render(request,'patient_search_doctors.html')
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
     
 def patientAppointments(request):
     return render(request, 'patient_book_appointment.html')
 
+<<<<<<< HEAD
 
 def doctorReviews(request):
     if 'doctorID' not in request.session:
@@ -478,3 +519,7 @@ def doctorMessages(request):
         "doctor":tblDoctor.objects.filter(doctorID=doctor_id).first(),
     }        
     return render(request,'doctor_messages.html',data)
+=======
+def patientMyAppointments(request):
+    return render(request, 'patient_my_appointments.html')
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879

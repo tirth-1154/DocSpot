@@ -179,6 +179,7 @@
                     <!-- Patient Profile Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<<<<<<< HEAD
                             <img src="{{ request.session.profilePic }}" class="rounded-circle me-2" width="35" height="35">
                             <span class="fw-medium">{{ request.session.user_name }}</span>
                         </a>
@@ -187,6 +188,16 @@
                             <li><a class="dropdown-item" href="#"><i class="fa-regular fa-calendar-check me-2"></i> My Appointments</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout</a></li>
+=======
+                            <img src="https://ui-avatars.com/api/?name={{ request.session.userName }}&background=0D8ABC&color=fff" alt="Profile" class="rounded-circle me-2" width="35" height="35">
+                            <span class="fw-medium">{{ request.session.userName|default:"Patient" }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user me-2"></i> View Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-regular fa-calendar-check me-2"></i> My Appointments</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout</a></li>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         </ul>
                     </li>
                 </ul>
@@ -208,7 +219,11 @@
                     <a class="nav-link" href="{% url 'patientAppointments' %}"><i class="fa-solid fa-calendar-plus"></i> Book Appointment</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link" href="{% url 'patientAppointments' %}"><i class="fa-regular fa-calendar-check"></i> My Appointments</a>
+=======
+                    <a class="nav-link" href="{% url 'patientMyAppointments' %}"><i class="fa-regular fa-calendar-check"></i> My Appointments</a>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'patientDoctorsList' %}"><i class="fa-solid fa-user-doctor"></i> Doctors List</a>

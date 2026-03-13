@@ -11,7 +11,11 @@
         <!-- A. Welcome Section -->
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-4">
             <div>
+<<<<<<< HEAD
                 <h2 class="fw-bold mb-1">Welcome, {{ request.user.first_name|default:"John" }} 👋</h2>
+=======
+                <h2 class="fw-bold mb-1" style="color:#0F6DB6;">Welcome, {{ request.user.first_name|default:"John" }} 👋</h2>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                 <p class="text-muted mb-0">Manage your appointments, health records, and connect with top doctors easily.</p>
             </div>
             <div>
@@ -27,7 +31,11 @@
                         <div class="icon-box bg-light-blue mx-auto"><i class="fa-solid fa-calendar-plus"></i></div>
                         <h5 class="card-title fw-bold">Book Appointment</h5>
                         <p class="card-text text-muted small mb-3">Schedule a new visit</p>
+<<<<<<< HEAD
                         <a href="{% url 'patientAppointments' %}" class="btn btn-outline-primary btn-sm rounded-pill w-100">Book Now</a>
+=======
+                        <a href="{% url 'patientAppointments' %}" class="btn btn-outline-success btn-sm rounded-pill w-100">Book Now</a>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                     </div>
                 </div>
             </div>
@@ -47,7 +55,11 @@
                         <div class="icon-box bg-light-warning mx-auto"><i class="fa-solid fa-user-doctor"></i></div>
                         <h5 class="card-title fw-bold">Find Doctors</h5>
                         <p class="card-text text-muted small mb-3">Search specialists</p>
+<<<<<<< HEAD
                         <a href="{% url 'patientDoctorsList' %}" class="btn btn-outline-warning btn-sm rounded-pill w-100 text-dark">Search</a>
+=======
+                        <a href="{% url 'patientDoctorsList' %}" class="btn btn-outline-warning btn-sm rounded-pill w-100">Search</a>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                     </div>
                 </div>
             </div>
@@ -158,8 +170,13 @@
                                 </td>
                                 <td><span class="badge bg-success rounded-pill px-3">Confirmed</span></td>
                                 <td class="text-end pe-4">
+<<<<<<< HEAD
                                     <button class="btn btn-sm btn-light text-primary me-2" title="View Details"><i class="fa-regular fa-eye"></i></button>
                                     <button class="btn btn-sm btn-light text-danger" title="Cancel Appointment"><i class="fa-solid fa-xmark"></i></button>
+=======
+                                    <button class="btn btn-sm btn-light me-2" title="View Details"><i class="fa-regular fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-light" title="Cancel Appointment"><i class="fa-solid fa-xmark"></i></button>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                                 </td>
                             </tr>
                             <!-- Static Example Row 2 -->
@@ -180,8 +197,13 @@
                                 </td>
                                 <td><span class="badge bg-warning text-dark rounded-pill px-3">Pending</span></td>
                                 <td class="text-end pe-4">
+<<<<<<< HEAD
                                     <button class="btn btn-sm btn-light text-primary me-2" title="View Details"><i class="fa-regular fa-eye"></i></button>
                                     <button class="btn btn-sm btn-light text-danger" title="Cancel Appointment"><i class="fa-solid fa-xmark"></i></button>
+=======
+                                    <button class="btn btn-sm btn-light me-2" title="View Details"><i class="fa-regular fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-light" title="Cancel Appointment"><i class="fa-solid fa-xmark"></i></button>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                                 </td>
                             </tr>
                         </tbody>

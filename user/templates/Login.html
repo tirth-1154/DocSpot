@@ -9,18 +9,31 @@
 <style>
     /* Premium Login UI */
     body {
+<<<<<<< HEAD
         background: #F4FAFB !important;
         margin: 0;
         /* allow normal scrolling on login page */
         overflow: auto;
+=======
+        background: #f0f4f8 !important;
+        margin: 0;
+        overflow: hidden; /* Prevent body scrolling if something slightly overflows */
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
     }
 
     .login-wrapper {
         display: flex;
+<<<<<<< HEAD
         align-items: center;
         justify-content: center;
         padding: 40px 0;
         min-height: 100vh;
+=======
+        align-items: flex-start; /* Changed from center to push form up */
+        justify-content: center;
+        padding-top: 0px; /* Added some top padding so it doesn't touch the header */
+        height: 10px; /* Fixed height instead of min-height */
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         box-sizing: border-box;
     }
 
@@ -39,7 +52,11 @@
     }
 
     .login-left {
+<<<<<<< HEAD
         padding: 40px 40px;
+=======
+        padding: 20px 30px; /* Reduced vertical padding */
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -103,6 +120,7 @@
         text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     }
 
+<<<<<<< HEAD
     .welcome-text {
         text-align: center;
         margin-bottom: 30px;
@@ -113,16 +131,33 @@
         color: #1a1a1a;
         font-size: 26px;
         margin-bottom: 8px;
+=======
+    .welcome-text h3 {
+        font-weight: 800;
+        color: #1a1a1a;
+        font-size: 26px; /* Reduced font size */
+        margin-bottom: 5px; /* Reduced margin */
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
     }
 
     .welcome-text span {
         color: #666;
+<<<<<<< HEAD
         font-size: 14px;
         display: block;
     }
 
     .welcome-text a {
         color: #0F6DB6;
+=======
+        font-size: 14px; /* Reduced font size */
+        display: block;
+        margin-bottom: 20px; /* Reduced margin */
+    }
+
+    .welcome-text a {
+        color: #2a41e8;
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         font-weight: 600;
         text-decoration: none;
     }
@@ -172,13 +207,22 @@
 
     .input-text.with-border:focus {
         background: #fff !important;
+<<<<<<< HEAD
         border-color: #0F6DB6 !important;
         box-shadow: 0 0 0 4px rgba(15, 109, 182, 0.18) !important;
+=======
+        border-color: #2a41e8 !important;
+        box-shadow: 0 0 0 4px rgba(42, 65, 232, 0.1) !important;
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
     }
 
     .input-text.with-border:focus+i,
     .input-with-icon-left:focus-within i {
+<<<<<<< HEAD
         color: #0F6DB6;
+=======
+        color: #2a41e8;
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         /* Optional: Make icon primary color when focused */
     }
 
@@ -193,11 +237,16 @@
     }
 
     .forgot-password:hover {
+<<<<<<< HEAD
         color: #0F6DB6;
+=======
+        color: #2a41e8;
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         text-decoration: none;
     }
 
     .button.login-btn {
+<<<<<<< HEAD
         border-radius: 12px !important;
         font-weight: 700 !important;
         font-size: 16px !important;
@@ -210,12 +259,25 @@
         margin-top: 15px;
         width: 100%;
         display: block;
+=======
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+        height: 46px;
+        box-shadow: 0 10px 20px rgba(42, 65, 232, 0.2) !important;
+        transition: transform 0.2s, box-shadow 0.2s !important;
+        margin-top: 5px;
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
     }
 
     .button.login-btn:hover {
         transform: translateY(-2px);
+<<<<<<< HEAD
         box-shadow: 0 15px 30px rgba(15, 109, 182, 0.35) !important;
         filter: brightness(0.98);
+=======
+        box-shadow: 0 15px 30px rgba(42, 65, 232, 0.3) !important;
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
     }
 
     .social-login-separator {
@@ -292,17 +354,26 @@
                 <form method="post" id="login-form">{% csrf_token %}
                     <!-- FIXED ALIGNMENTS -->
                     <div class="input-with-icon-left">
+<<<<<<< HEAD
                         <i class="fa-regular fa-envelope"></i>
+=======
+                        <i class="icon-material-baseline-mail-outline"></i>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         <input type="text" class="input-text with-border" name="emailaddress" id="emailaddress"
                             placeholder="Email Address" required />
                     </div>
 
                     <div class="input-with-icon-left">
+<<<<<<< HEAD
                         <i class="fa-solid fa-lock"></i>
+=======
+                        <i class="icon-material-outline-lock"></i>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         <input type="password" class="input-text with-border" name="password" id="password"
                             placeholder="Password" required />
                     </div>
                     <a href="#" class="forgot-password">Forgot Password?</a>
+<<<<<<< HEAD
 
                     <input type="submit" class="button login-btn ripple-effect"
                     form="login-form" name="btnLogin" value="Log In">
@@ -310,6 +381,12 @@
                 </form>
 
                
+=======
+                </form>
+
+                <input type="submit" class="button full-width button-sliding-icon ripple-effect login-btn"
+                    form="login-form" name="btnLogin" value="Log In">
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 
                 <div class="social-login-separator"><span>Or login with</span></div>
                 <div class="social-login-buttons">

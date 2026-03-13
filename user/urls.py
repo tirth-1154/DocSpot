@@ -21,13 +21,22 @@ urlpatterns = [
     path('rejectAppointment/<int:id>/', views.rejectAppointment, name='rejectAppointment'),
     path('acceptAppointment/<int:id>/', views.acceptAppointment, name='acceptAppointment'),
     path('doctorAppointments/',views.doctorAppointments,name='doctorAppointments'), 
+<<<<<<< HEAD
     path('doctorReviews/',views.doctorReviews,name='doctorReviews'),
     path('doctorMessages/',views.doctorMessages,name='doctorMessages'),
 
+=======
+    path('doctorMessages/',views.doctorMessages,name='doctorMessages'), 
+    path('doctorReviews/',views.doctorReviews,name='doctorReviews'), 
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 
     #patient urls
     path('patientRegister/',views.patientRegister,name='patientRegister'),
     path('patientDashboard/',views.patientDashboard,name='patientDashboard'),
     path('patientDoctorsList/',views.patientDoctorsList,name='patientDoctorsList'),
     path('patientAppointments/',views.patientAppointments,name='patientAppointments'),
+<<<<<<< HEAD
+=======
+    path('patientMyAppointments/',views.patientMyAppointments,name='patientMyAppointments'),
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 ]

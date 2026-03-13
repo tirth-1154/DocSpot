@@ -120,6 +120,7 @@
                                     <input type="date" class="form-control" name="app_date" id="app_date" required min="2026-03-12">
                                     <div class="invalid-feedback">Please select a future date.</div>
                                 </div>
+<<<<<<< HEAD
                                 <div class="col-md-6">
                                     <label class="form-label">Select Time Slot *</label>
                                     <select class="form-select" name="time_slot" id="time_slot" required>
@@ -151,6 +152,41 @@
                                         <option value="09:00 PM">09:00 PM</option>
                                     </select>
                                     <div class="invalid-feedback">Please select a time slot.</div>
+=======
+                                <div class="col-md-12">
+                                    <label class="form-label">Select Time Slot *</label>
+                                    <div class="row g-2">
+                                        {% for slot in available_slots|default:"10:00 AM,10:30 AM,11:00 AM,11:30 AM,02:00 PM,02:30 PM,03:00 PM,03:30 PM"|make_list %}
+                                        <!-- Note: make_list is a placeholder for demonstration -->
+                                        {% endfor %}
+                                        <!-- Static Slots for Demonstration -->
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <input type="radio" name="time_slot" id="slot1" class="time-slot-radio" value="10:00 AM" required>
+                                            <label for="slot1" class="time-slot-pill">10:00 AM</label>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <input type="radio" name="time_slot" id="slot2" class="time-slot-radio" value="10:30 AM">
+                                            <label for="slot2" class="time-slot-pill">10:30 AM</label>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <input type="radio" name="time_slot" id="slot3" class="time-slot-radio" value="11:00 AM">
+                                            <label for="slot3" class="time-slot-pill">11:00 AM</label>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-md-3">
+                                            <input type="radio" name="time_slot" id="slot4" class="time-slot-radio" value="11:30 AM">
+                                            <label for="slot4" class="time-slot-pill">11:30 AM</label>
+                                        </div>
+                                    </div>
+                                    <!-- Availability Feedback -->
+                                    <div class="mt-3">
+                                        <div class="alert alert-success availability-alert p-2 d-none" id="availableMsg">
+                                            <i class="fa-solid fa-circle-check me-2"></i> Selected slot is available
+                                        </div>
+                                        <div class="alert alert-danger availability-alert p-2 d-none" id="unavailableMsg">
+                                            <i class="fa-solid fa-circle-xmark me-2"></i> This time slot is already booked
+                                        </div>
+                                    </div>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                                 </div>
                             </div>
 
@@ -233,9 +269,26 @@
             summDate.textContent = e.target.value || '-- / -- / ----';
         });
 
+<<<<<<< HEAD
         const timeSlot = document.getElementById('time_slot');
         timeSlot.addEventListener('change', (e) => {
             summTime.textContent = e.target.value || '-- : -- --';
+=======
+        document.querySelectorAll('.time-slot-radio').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                summTime.textContent = e.target.value;
+                
+                // Dummy logic for availability feedback
+                // Show 'booked' for 11:30 AM just for demo
+                if(e.target.value === '11:30 AM') {
+                    availableMsg.classList.add('d-none');
+                    unavailableMsg.classList.remove('d-none');
+                } else {
+                    unavailableMsg.classList.add('d-none');
+                    availableMsg.classList.remove('d-none');
+                }
+            });
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         });
     </script>
 {% endblock %}

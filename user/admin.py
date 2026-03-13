@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+=======
+# from django.contrib import admin
+# from .models import *
+
+# admin.site.register(tblUser)
+# admin.site.register(tblCity)
+# admin.site.register(tblState)
+# admin.site.register(tblSubcategory)
+# admin.site.register(tblCategory)
+# admin.site.register(tblDoctorPost)
+# admin.site.register(tblDoctor)
+# admin.site.register(tblDoctorImages)
+# admin.site.register(tblComments)
+# admin.site.register(tblClient)
+# admin.site.register(tblAppointment)
+# admin.site.register(tblclientHistory)   
+# admin.site.register(tblReview)
+# admin.site.register(tblchat)
+# admin.site.register(tblnotification)
+# admin.site.register(tblFollow)
+
+# # Register your models here.
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 from django.contrib import admin
 from .models import *
 

@@ -187,18 +187,30 @@
             <!-- 1. Page Header -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
+<<<<<<< HEAD
                     <h2 class="fw-bold mb-1 text-dark"><i class="fa-solid fa-stethoscope text-primary me-2"></i>Find a Doctor</h2>
+=======
+                    <h2 class="fw-bold mb-1" style="color:#0F6DB6;"><i class="fa-solid fa-stethoscope me-2" style="color:#0F6DB6;"></i>Find a Doctor</h2>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                     <p class="text-muted mb-0">Search doctors by specialization, department, or name to book your next appointment.</p>
                 </div>
             </div>
 
             <!-- 2. Main Search Bar Section -->
             <div class="search-container bg-white p-3 mb-4">
+<<<<<<< HEAD
                 <form method="GET" action="{% url 'patientDoctorsList' %}">
                     <div class="row g-2 align-items-center">
                         <div class="col-md-9 position-relative">
                             <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
                             <input type="text" name="search_query" class="form-control form-control-lg ps-5 border-0 bg-light rounded-pill" placeholder="Search by Doctor Name, Specialization, or City..." value="{{ search_query }}">
+=======
+                <form method="GET" action="#">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-md-9 position-relative">
+                            <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" name="search_query" class="form-control form-control-lg ps-5 border-0 bg-light rounded-pill" placeholder="Search by Doctor Name, Specialization, or Department..." value="{{ request.GET.search_query }}">
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         </div>
                         <div class="col-md-3 d-flex gap-2">
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill flex-grow-1 fw-medium shadow-sm">Search</button>
@@ -338,8 +350,12 @@
                     <!-- 5. Sorting Options & Result Count -->
                     <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded-4 shadow-sm border border-light">
                         <div class="text-muted fw-medium">
+<<<<<<< HEAD
                             Found <span class="text-dark fw-bold">{{ doctors|length }}</span> doctors
                             {% if search_query %}<span class="ms-2">for "<strong>{{ search_query }}</strong>"</span>{% endif %}
+=======
+                            Found <span class="text-dark fw-bold">{{ doctors|length|default:"12" }}</span> doctors
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             <span class="text-muted small whitespace-nowrap">Sort by:</span>
@@ -362,6 +378,7 @@
                             <div class="card doctor-card h-100 p-3">
                                 <!-- Profile Image -->
                                 <div class="doctor-img-wrapper">
+<<<<<<< HEAD
                                     {% if doctor.userID.profilePic %}
                                     <img src="{{ doctor.userID.profilePic.url }}" alt="Dr. {{ doctor.displayName }}">
                                     {% else %}
@@ -388,20 +405,49 @@
                                             <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
                                             <span class="text-muted ms-1 small fw-medium">(No ratings)</span>
                                         {% endif %}
+=======
+                                    <!-- Placeholder image if doctor.image not present -->
+                                    <img src="{{ doctor.profilePic.url|default:'https://ui-avatars.com/api/?name='|add:doctor.name|add:'&background=random' }}" alt="Dr. {{ doctor.name }}">
+                                </div>
+                                
+                                <div class="card-body text-center px-1 pb-1">
+                                    <h5 class="card-title fw-bold text-dark mb-1">Dr. {{ doctor.name|default:"Alistair Brown" }}</h5>
+                                    <p class="text-primary fw-medium small mb-2">{{ doctor.specialization|default:"Cardiologist" }}</p>
+                                    
+                                    <!-- Rating -->
+                                    <div class="doctor-rating mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                        <span class="text-muted ms-1 small fw-medium">({{ doctor.rating|default:"4.8" }})</span>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                                     </div>
 
                                     <!-- Meta info list -->
                                     <ul class="list-unstyled text-muted small text-start mb-4 mt-3 bg-light rounded-3 p-3">
+<<<<<<< HEAD
                                         <li class="mb-2"><i class="fa-solid fa-sitemap mt-1 me-2 text-secondary w-15px text-center"></i> Specialization: {{ doctor.subcategoryID.subcategoryName }}</li>
                                         <li class="mb-2"><i class="fa-solid fa-map-marker-alt mt-1 me-2 text-danger w-15px text-center"></i> City: {{ doctor.userID.cityID.cityName }}</li>
                                         <li class="mb-2"><i class="fa-regular fa-hospital mt-1 me-2 text-primary w-15px text-center"></i> {{ doctor.displayAddress }}</li>
                                         <li class="mb-2"><i class="fa-solid fa-phone mt-1 me-2 text-info w-15px text-center"></i> {{ doctor.displayContact }}</li>
                                         <li class="mb-2"><i class="fa-solid fa-stethoscope mt-1 me-2 text-success w-15px text-center"></i> Mode: {% if doctor.mode == 1 %}Online{% elif doctor.mode == 2 %}Offline{% else %}Both{% endif %}</li>
+=======
+                                        <li class="mb-2"><i class="fa-solid fa-sitemap mt-1 me-2 text-secondary w-15px text-center"></i> Dept: {{ doctor.department|default:"Heart Center" }}</li>
+                                        <li class="mb-2"><i class="fa-solid fa-award mt-1 me-2 text-warning w-15px text-center"></i> Exp: {{ doctor.experience|default:"12 Years" }}</li>
+                                        <li class="mb-2"><i class="fa-regular fa-hospital mt-1 me-2 text-primary w-15px text-center"></i> {{ doctor.clinic_name|default:"CareSpot General Hospital" }}</li>
+                                        <li class="mb-2"><i class="fa-regular fa-clock mt-1 me-2 text-info w-15px text-center"></i> Available: {{ doctor.availability|default:"Today, 02:00 PM" }}</li>
+                                        <li class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                                            <span class="text-dark fw-medium">Consultation Fee</span>
+                                            <span class="fee-badge">${{ doctor.fee|default:"80.00" }}</span>
+                                        </li>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                                     </ul>
                                     
                                     <!-- Action Buttons -->
                                     <div class="d-flex gap-2">
+<<<<<<< HEAD
                                         <a href="{% url 'viewDoctorProfile' doctor.doctorID %}" class="btn btn-outline-primary btn-sm rounded-pill w-50 fw-medium">View Profile</a>
+=======
+                                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill w-50 fw-medium">View Profile</a>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                                         <a href="{% url 'patientAppointments' %}?doctor_id={{ doctor.doctorID }}" class="btn btn-primary btn-sm rounded-pill w-50 fw-medium shadow-sm">Book Appt.</a>
                                     </div>
                                 </div>
@@ -409,16 +455,90 @@
                         </div>
                         {% empty %}
                         
+<<<<<<< HEAD
                         <!-- No Result UI -->
+=======
+                        <!-- 7. No Result UI -->
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         <div class="col-12 text-center py-5 my-5">
                             <div class="mb-4">
                                 <i class="fa-solid fa-user-doctor text-muted opacity-25" style="font-size: 80px;"></i>
                             </div>
+<<<<<<< HEAD
                             <h4 class="fw-bold text-dark">No doctors found{% if search_query %} matching "{{ search_query }}"{% endif %}.</h4>
+=======
+                            <h4 class="fw-bold text-dark">No doctors found matching your search.</h4>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                             <p class="text-muted fs-5">Try adjusting your filters, clearing your search query, or selecting a different department.</p>
                             <a href="{% url 'patientDoctorsList' %}" class="btn btn-primary rounded-pill px-4 py-2 mt-3">Reset All Filters</a>
                         </div>
                         
+<<<<<<< HEAD
+=======
+                        <!-- STATIC EXAMPLES (Visible if the Django loop is empty or 'doctors' is not passed) -->
+                        <!-- Static Card 1 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card doctor-card h-100 p-3">
+                                <div class="doctor-img-wrapper">
+                                    <img src="https://ui-avatars.com/api/?name=Sarah+Jenkins&background=random" alt="Doctor">
+                                </div>
+                                <div class="card-body text-center px-1 pb-1">
+                                    <h5 class="card-title fw-bold text-dark mb-1">Dr. Sarah Jenkins</h5>
+                                    <p class="text-primary fw-medium small mb-2">Cardiology</p>
+                                    <div class="doctor-rating mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                        <span class="text-muted ms-1 small fw-medium">(4.8)</span>
+                                    </div>
+                                    <ul class="list-unstyled text-muted small text-start mb-4 mt-3 bg-light rounded-3 p-3">
+                                        <li class="mb-2"><i class="fa-solid fa-sitemap mt-1 me-2 text-secondary w-15px text-center"></i> Dept: Heart & Vascular</li>
+                                        <li class="mb-2"><i class="fa-solid fa-award mt-1 me-2 text-warning w-15px text-center"></i> Exp: 15 Years</li>
+                                        <li class="mb-2"><i class="fa-regular fa-hospital mt-1 me-2 text-primary w-15px text-center"></i> City General Hospital</li>
+                                        <li class="mb-2"><i class="fa-regular fa-clock mt-1 me-2 text-info w-15px text-center"></i> Available: Today, 01:00 PM</li>
+                                        <li class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                                            <span class="text-dark fw-medium">Consultation Fee</span>
+                                            <span class="fee-badge">$100.00</span>
+                                        </li>
+                                    </ul>
+                                    <div class="d-flex gap-2">
+                                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill w-50 fw-medium">View Profile</a>
+                                        <a href="#" class="btn btn-primary btn-sm rounded-pill w-50 fw-medium shadow-sm">Book Appt.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Static Card 2 -->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card doctor-card h-100 p-3">
+                                <div class="doctor-img-wrapper">
+                                    <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=random" alt="Doctor">
+                                </div>
+                                <div class="card-body text-center px-1 pb-1">
+                                    <h5 class="card-title fw-bold text-dark mb-1">Dr. Michael Chen</h5>
+                                    <p class="text-primary fw-medium small mb-2">Orthopedics</p>
+                                    <div class="doctor-rating mb-2">
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                        <span class="text-muted ms-1 small fw-medium">(4.1)</span>
+                                    </div>
+                                    <ul class="list-unstyled text-muted small text-start mb-4 mt-3 bg-light rounded-3 p-3">
+                                        <li class="mb-2"><i class="fa-solid fa-sitemap mt-1 me-2 text-secondary w-15px text-center"></i> Dept: Bone Center</li>
+                                        <li class="mb-2"><i class="fa-solid fa-award mt-1 me-2 text-warning w-15px text-center"></i> Exp: 8 Years</li>
+                                        <li class="mb-2"><i class="fa-regular fa-hospital mt-1 me-2 text-primary w-15px text-center"></i> CareSpot West Clinic</li>
+                                        <li class="mb-2"><i class="fa-regular fa-clock mt-1 me-2 text-info w-15px text-center"></i> Available: Tomorrow, 09:30 AM</li>
+                                        <li class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                                            <span class="text-dark fw-medium">Consultation Fee</span>
+                                            <span class="fee-badge">$75.00</span>
+                                        </li>
+                                    </ul>
+                                    <div class="d-flex gap-2">
+                                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill w-50 fw-medium">View Profile</a>
+                                        <a href="{% url 'patientAppointments' %}" class="btn btn-primary btn-sm rounded-pill w-50 fw-medium shadow-sm">Book Appt.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
                         {% endfor %}
 
                     </div>

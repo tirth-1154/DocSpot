@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% block title %}Home{% endblock %}
+<<<<<<< HEAD
 {% block nav_home %}current{% endblock %}
 {% block nav_dashboard %}{% endblock %}
 
@@ -786,4 +787,481 @@
   </div>
 </div>
 
+=======
+{% block nav_home %}active{% endblock %}
+{% block nav_dashboard %}{% endblock %}
+
+{% block css %}
+<style>
+    /* Home Page UI Improvements */
+    .home-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: 12px;
+        padding: 40px;
+        color: #fff;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(15, 109, 182, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .home-header::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        border-radius: 50%;
+    }
+
+    .home-header-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .home-header h2 {
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .home-header p {
+        font-size: 16px;
+        opacity: 0.9;
+        margin: 0;
+        max-width: 600px;
+    }
+
+    /* Main Layout */
+    .home-container {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .feed-column {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sidebar-column {
+        width: 350px;
+        flex-shrink: 0;
+    }
+
+    /* Blog Cards */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .custom-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        border: 1px solid #eef2f5;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        text-decoration: none !important;
+        color: var(--text-color);
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        color: var(--text-color);
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+        background-color: #f8fafc;
+    }
+
+    .card-body {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-meta {
+        font-size: 13px;
+        color: #8c98a4;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.4;
+        color: var(--text-color);
+        transition: color 0.2s;
+    }
+
+    .custom-card:hover .card-title {
+        color: var(--primary-color);
+    }
+
+    .card-text {
+        font-size: 14px;
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex-grow: 1;
+    }
+
+    .card-footer-custom {
+        padding-top: 15px;
+        border-top: 1px solid #eef2f5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .doctor-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .doctor-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .doctor-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .read-more {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    /* Empty State */
+    .empty-state {
+        background: #fff;
+        border-radius: 12px;
+        border: 2px dashed #eef2f5;
+        padding: 60px 40px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .empty-icon {
+        font-size: 48px;
+        color: #d1d5db;
+        margin-bottom: 20px;
+    }
+
+    .empty-state h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    .empty-state p {
+        color: #6c757d;
+        margin-bottom: 25px;
+    }
+
+    /* Recent Posts Sidebar styling */
+    .sidebar-widget {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        border: 1px solid #eef2f5;
+        padding: 25px;
+        margin-bottom: 30px;
+    }
+
+    .sidebar-widget h4 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #eef2f5;
+        position: relative;
+    }
+
+    .sidebar-widget h4::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--primary-color);
+    }
+
+    .recent-post-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #f8fafc;
+        text-decoration: none !important;
+    }
+
+    .recent-post-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .recent-post-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+        background: #f8fafc;
+    }
+
+    .recent-post-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .recent-post-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 5px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        transition: color 0.2s;
+    }
+
+    .recent-post-item:hover .recent-post-title {
+        color: var(--primary-color);
+    }
+
+    .recent-post-meta {
+        font-size: 12px;
+        color: #8c98a4;
+    }
+
+    /* Popular Tags / Topics */
+    .topics-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .topic-tag {
+        background: #f8fafc;
+        color: #495057;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+        border: 1px solid #e0e6ed;
+    }
+
+    .topic-tag:hover {
+        background: var(--primary-color);
+        color: #fff;
+        border-color: var(--primary-color);
+    }
+
+    /* Search Box */
+    .search-box {
+        position: relative;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 12px 20px 12px 45px;
+        border: 1px solid #e0e6ed;
+        border-radius: 30px;
+        background: #f8fafc;
+        font-size: 14px;
+        transition: all 0.2s;
+    }
+
+    .search-box input:focus {
+        background: #fff;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(15, 109, 182, 0.1);
+        outline: none;
+    }
+
+    .search-box i {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #8c98a4;
+    }
+
+    @media (max-width: 991px) {
+        .home-container {
+            flex-direction: column;
+        }
+        .sidebar-column {
+            width: 100%;
+        }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    
+    <!-- Hero Header -->
+    <div class="home-header">
+        <div class="home-header-content">
+            {% if is_following_anyone %}
+                <h2>Your Feed</h2>
+                <p>Welcome back! Here are the latest health articles and updates from the doctors you follow.</p>
+            {% else %}
+                <h2>Explore Health Insights</h2>
+                <p>Discover expert medical advice, healthy living tips, and the latest healthcare news from our top professionals.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="home-container">
+        
+        <!-- Main Feed Column -->
+        <div class="feed-column">
+            
+            {% if blogs %}
+                <div class="blog-grid">
+                    {% for blog in blogs %}
+                        <a href="{% url 'doctorPostDetails' blog.doctorPostID %}" class="custom-card">
+                            <!-- Thumbnail -->
+                            {% if blog.thumbnail %}
+                                <img src="{{ blog.thumbnail.url }}" alt="{{ blog.title }}" class="card-img-top">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=400" alt="Medical Image" class="card-img-top">
+                            {% endif %}
+                            
+                            <!-- Content -->
+                            <div class="card-body">
+                                <div class="card-meta">
+                                    <span><i class="fa-regular fa-calendar"></i> {{ blog.createDT|date:"M d, Y" }}</span>
+                                </div>
+                                <h3 class="card-title">{{ blog.title }}</h3>
+                                <div class="card-text">{{ blog.description|truncatewords:20 }}</div>
+                                
+                                <div class="card-footer-custom mt-auto">
+                                    <div class="doctor-meta">
+                                        {% if blog.doctorID.userID.profilePic %}
+                                            <img src="{{ blog.doctorID.userID.profilePic.url }}" class="doctor-avatar" alt="Doctor">
+                                        {% else %}
+                                            <div class="doctor-avatar">{{ blog.doctorID.displayName|make_list|first|upper }}</div>
+                                        {% endif %}
+                                        <span class="doctor-name">{{ blog.doctorID.displayName }}</span>
+                                    </div>
+                                    <span class="read-more">Read <i class="fa-solid fa-arrow-right ms-1"></i></span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <i class="fa-solid fa-newspaper empty-icon"></i>
+                    <h4>Your feed is currently empty</h4>
+                    <p>You aren't following anyone yet, or the doctors you follow haven't posted anything recently.</p>
+                    <a href="{% url 'doctorSearch' %}" class="btn btn-primary px-4 py-2 fw-semibold">
+                        <i class="fa-solid fa-magnifying-glass me-2"></i> Find Doctors to Follow
+                    </a>
+                </div>
+            {% endif %}
+            
+        </div>
+
+        <!-- Right Sidebar Column -->
+        <div class="sidebar-column">
+            
+            <!-- Search Widget -->
+            <div class="sidebar-widget">
+                <h4>Search Articles</h4>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search by keyword, condition...">
+                </div>
+            </div>
+
+            <!-- Recent/Trending Posts Widget -->
+            {% if recent_posts %}
+            <div class="sidebar-widget">
+                <h4>Trending Now</h4>
+                <div class="recent-posts-list">
+                    {% for post in recent_posts|slice:":4" %}
+                        <a href="{% url 'doctorPostDetails' post.doctorPostID %}" class="recent-post-item">
+                            {% if post.thumbnail %}
+                                <img src="{{ post.thumbnail.url }}" alt="" class="recent-post-img">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=150" alt="" class="recent-post-img">
+                            {% endif %}
+                            <div class="recent-post-content">
+                                <h5 class="recent-post-title">{{ post.title }}</h5>
+                                <span class="recent-post-meta">{{ post.createDT|date:"M d, Y" }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Popular Topics Widget -->
+            <div class="sidebar-widget">
+                <h4>Popular Topics</h4>
+                <div class="topics-list">
+                    <a href="#" class="topic-tag">Mental Health</a>
+                    <a href="#" class="topic-tag">Nutrition</a>
+                    <a href="#" class="topic-tag">Fitness</a>
+                    <a href="#" class="topic-tag">Pediatrics</a>
+                    <a href="#" class="topic-tag">Heart Health</a>
+                    <a href="#" class="topic-tag">Skincare</a>
+                    <a href="#" class="topic-tag">Wellness Tips</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
 {% endblock %}

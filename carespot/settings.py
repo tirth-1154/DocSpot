@@ -55,7 +55,11 @@ ROOT_URLCONF = 'carespot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [BASE_DIR / 'user' / 'templates'],
+=======
+        'DIRS': [],
+>>>>>>> 8a65e0225cdbafd355e35c3917df33c1cd88c879
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
