@@ -1,0 +1,273 @@
+{% extends 'base.html' %} 
+{% block title %}My Appointments{% endblock %}
+{% block nav_dashboard %}current{% endblock %}
+{% block sidebar_nav_appointments %}active{% endblock %}
+{% block nav_home %}{% endblock %}
+
+{% block css %}
+<style>
+    /* Premium Status Badge */
+    .status-accepted-premium {
+        background-color: rgba(11, 122, 112, 0.1) !important;
+        color: #0b7a70 !important;
+        border: 1px solid #b2f5ea !important;
+        cursor: default !important;
+        font-weight: 600 !important;
+        animation: fadeInScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .status-rejected-premium {
+        background-color: rgba(197, 48, 48, 0.1) !important;
+        color: #c53030 !important;
+        border: 1px solid #feb2b2 !important;
+        cursor: default !important;
+        font-weight: 600 !important;
+        animation: fadeInScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .status-accepted-premium i, .status-rejected-premium i {
+        margin-right: 6px;
+    }
+
+    /* Dashboard Layout Tweaks */
+    .dashboard-headline {
+        margin-bottom: 30px;
+    }
+    
+    .dashboard-headline h3 {
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--primary-color);
+    }
+
+    .subtitle {
+        color: #6c757d;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .dashboard-box {
+        background: var(--card-color);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+
+    .dashboard-box .headline {
+        padding: 20px 25px;
+        border-bottom: 1px solid #eef2f5;
+        background-color: #fff;
+    }
+    
+    .dashboard-box .headline h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+    }
+
+    .dashboard-box .headline h3 i {
+        color: var(--primary-color);
+        margin-right: 12px;
+        font-size: 20px;
+    }
+
+    /* Appointment Card Customization */
+    .appointment-card {
+        padding: 25px;
+        border-bottom: 1px solid #f1f3f5;
+        transition: background-color 0.2s;
+    }
+
+    .appointment-card:hover {
+        background-color: #f8fcfd;
+    }
+
+    .appointment-card:last-child {
+        border-bottom: none;
+    }
+
+    .patient-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        border: 2px solid #fff;
+    }
+
+    .patient-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .patient-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: #6c757d;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .patient-details li i {
+        color: var(--secondary-color);
+        margin-right: 6px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn-rounded {
+        border-radius: 8px;
+        font-weight: 500;
+        padding: 8px 16px;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+    .btn-rounded i {
+        margin-right: 8px;
+    }
+
+    .btn-accept {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: 1px solid var(--primary-color);
+    }
+
+    .btn-accept:hover {
+        background-color: var(--primary-dark);
+        color: #fff;
+    }
+
+    .btn-reject {
+        background-color: transparent;
+        color: #6c757d;
+        border: 1px solid #dee2e6;
+    }
+
+    .btn-reject:hover {
+        background-color: #f8f9fa;
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-message {
+        background-color: rgba(35, 182, 179, 0.1);
+        color: var(--secondary-color);
+        border: 1px solid transparent;
+    }
+
+    .btn-message:hover {
+        background-color: var(--secondary-color);
+        color: #fff;
+    }
+
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid p-0">
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>Manage Appointments</h3>
+        <p class="subtitle mt-2">Appointments requiring attention for Dr. {{doctor.displayName}}</p>
+    </div>
+
+    <!-- Row -->
+    <div class="row">
+        <!-- Dashboard Box -->
+        <div class="col-xl-12 mb-4">
+            <div class="dashboard-box">
+                <!-- Headline -->
+                <div class="headline">
+                    <h3><i class="fa-solid fa-users-viewfinder"></i> Patient Requests</h3>
+                </div>
+                
+                <div class="content p-0">
+                    {% for a in Appointments %}
+                    <div class="appointment-card">
+                        <div class="row align-items-center">
+                            
+                            <!-- Avatar & Info -->
+                            <div class="col-md-7 mb-3 mb-md-0 d-flex">
+                                <div class="me-4 flex-shrink-0">
+                                    <img src="{{a.clientID.userID.profilePic.url}}" alt="Patient" class="patient-avatar">
+                                </div>
+                                <div>
+                                    <h4 class="patient-name">
+                                        {{a.clientID.name}} 
+                                    </h4>
+                                    <ul class="patient-details mt-2">
+                                        <li><i class="fa-regular fa-envelope"></i> {{a.clientID.userID.email}}</li>
+                                        <li><i class="fa-regular fa-calendar-days"></i> {{a.appointmentDate}}</li>
+                                        <li><i class="fa-regular fa-clock"></i> {{a.appointmentTime}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="col-md-5 text-md-end">
+                                <div class="action-buttons justify-content-md-end">
+                                    {% if a.isAccepted %}
+                                        <span class="btn-rounded status-accepted-premium">
+                                            <i class="fa-solid fa-circle-check"></i> Accepted
+                                        </span>
+                                    {% elif a.isRejected %}
+                                        <span class="btn-rounded status-rejected-premium">
+                                            <i class="fa-solid fa-circle-xmark"></i> Rejected
+                                        </span>
+                                    {% else %}
+                                        <a href="{% url 'acceptAppointment' a.appointmentID %}" class="btn-rounded btn-accept">
+                                            <i class="fa-solid fa-check"></i> Accept
+                                        </a>
+                                        <a href="{% url 'rejectAppointment' a.appointmentID %}" class="btn-rounded btn-reject">
+                                            <i class="fa-solid fa-xmark"></i> Reject
+                                        </a>
+                                    {% endif %}
+                                    <a href="#small-dialog" class="btn-rounded btn-message popup-with-zoom-anim">
+                                        <i class="fa-regular fa-paper-plane"></i> Message
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-5">
+                        <i class="fa-regular fa-calendar-check fa-4x text-light mb-3"></i>
+                        <h4 class="text-muted">No appointments found.</h4>
+                        <p class="text-muted small">You currently have no pending appointment requests.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Row / End -->
+
+</div>
+
+{% endblock %}
