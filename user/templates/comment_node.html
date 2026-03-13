@@ -1,0 +1,49 @@
+{% for comment in comments %}
+<li class="comment-node">
+	<div class="comment-wrap">
+		<!-- Avatar Column -->
+		<div class="avatar-col">
+			<div class="avatar">
+				{% if comment.userID.profilePic %}
+				<img src="{{comment.userID.profilePic.url}}" alt="">
+				{% else %}
+				<img src="/static/images/user-avatar-placeholder.png" alt="">
+				{% endif %}
+			</div>
+			<!-- Draw the vertical line connecting to current children -->
+			{% if comment.replies.all %}
+			<div class="avatar-line"></div>
+			{% endif %}
+		</div>
+		
+		<!-- Content Column -->
+		<div class="content-col">
+			<div class="comment-by">
+				<span class="user-name">{{comment.userID.userName}}</span>
+				<span class="date">{{comment.createdDT|date:"jS, F Y"}}</span>
+				<a href="#add-comment" class="reply" onclick="document.getElementById('parent_id').value='{{comment.commentsID}}'; document.getElementById('comment-text').focus(); document.getElementById('replying-to').style.display='block'; document.getElementById('reply-user').innerText='{{comment.userID.userName}}';"><i class="fa fa-reply"></i> Reply</a>
+			</div>
+			<div class="comment-text">
+				<p>{{comment.comment}}</p>
+			</div>
+		</div>
+	</div>
+
+	{% if comment.replies.all %}
+		{% if comment.replies.all|length >= 2 %}
+		<div class="toggle-replies" style="padding-left: 95px; margin-top: 5px; margin-bottom: 25px;">
+			<a href="javascript:void(0)" onclick="toggleReplies('replies-{{comment.commentsID}}', this)" style="color: #2a41e8; font-weight: 600; font-size: 14px; text-decoration: none;">
+				<i class="icon-feather-chevron-down" style="margin-right: 5px;"></i>View {{ comment.replies.all|length }} replies
+			</a>
+		</div>
+		<ul class="replies" id="replies-{{comment.commentsID}}" style="display: none;">
+			{% include "comment_node.html" with comments=comment.replies.all %}
+		</ul>
+		{% else %}
+		<ul class="replies" id="replies-{{comment.commentsID}}">
+			{% include "comment_node.html" with comments=comment.replies.all %}
+		</ul>
+		{% endif %}
+	{% endif %}
+</li>
+{% endfor %}
